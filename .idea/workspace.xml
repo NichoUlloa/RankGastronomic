@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Comida.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Comida.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Reseña.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Reseña.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Restorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restorante.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Ubicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Ubicacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Usuario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

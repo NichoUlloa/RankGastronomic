@@ -126,6 +126,4 @@ public class RankGastronomic {
         return radioTierra * va2;
     }
 
-
-
 }
