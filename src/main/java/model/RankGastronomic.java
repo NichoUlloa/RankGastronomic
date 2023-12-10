@@ -4,23 +4,23 @@ import java.util.List;
 
 public class RankGastronomic {
 
-    private List<Restaurante> listaRestaurantes;
+    private List<Restorante> listaRestaurantes;
     private List<Comida> listaComidas;
     private List<Usuario> listaUsuarios;
     private List<Reseña> listaReseñas;
 
-    public RankGastronomic(List<Restaurante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
+    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
         this.listaRestaurantes = listaRestaurantes;
         this.listaComidas = listaComidas;
         this.listaUsuarios = listaUsuarios;
         this.listaReseñas = listaReseñas;
     }
 
-    public List<Restaurante> getListaRestaurantes() {
+    public List<Restorante> getListaRestaurantes() {
         return listaRestaurantes;
     }
 
-    public void setListaRestaurantes(List<Restaurante> listaRestaurantes) {
+    public void setListaRestaurantes(List<Restorante> listaRestaurantes) {
         this.listaRestaurantes = listaRestaurantes;
     }
 
@@ -52,8 +52,8 @@ public class RankGastronomic {
     }
 
     //metodo buscar restorante por nombre, validando que exista en la lista de restaurantes
-    public Restaurante buscarRestorante(String nombreRestorante) {
-        for (Restaurante restorante : listaRestaurantes) {
+    public Restorante buscarRestorante(String nombreRestorante) {
+        for (Restorante restorante : listaRestaurantes) {
             if (restorante.getNombreRestorante().equals(nombreRestorante)) {
                 return restorante;
             }
@@ -71,7 +71,7 @@ public class RankGastronomic {
         return null;
     }
 
-    //metodo agregar usuario a la lista de usuarios, validando que el usuario no exista en la lista de usuarios
+    //metodo agregar usuario a la lista de usuarios, validando que el usuario no exista en la lista de usuarios y agregarlo a la base de datos
     public void agregarUsuario(Usuario usuario) {
         if (listaUsuarios.contains(usuario)) {
             System.out.println("El usuario ya existe en la lista de usuarios");
@@ -90,7 +90,7 @@ public class RankGastronomic {
     }
 
     //metodo agregar restorante a la lista de restaurantes, validando que el restorante no exista en la lista de restaurantes
-    public void agregarRestorante(Restaurante restorante) {
+    public void agregarRestorante(Restorante restorante) {
         if (listaRestaurantes.contains(restorante)) {
             System.out.println("El restorante ya existe en la lista de restaurantes");
         } else {
@@ -99,11 +99,29 @@ public class RankGastronomic {
     }
 
     //metodo eliminar restorante de la lista de restaurantes, validando que el restorante exista en la lista de restaurantes
-    public void eliminarRestorante(Restaurante restorante) {
+    public void eliminarRestorante(Restorante restorante) {
         if (listaRestaurantes.contains(restorante)) {
             listaRestaurantes.remove(restorante);
         } else {
             System.out.println("El restorante no existe en la lista de restaurantes");
+        }
+    }
+
+    //metodo agregar comida a la lista de comidas, validando que la comida no exista en la lista de comidas
+    public void agregarComida(Comida comida) {
+        if (listaComidas.contains(comida)) {
+            System.out.println("La comida ya existe en la lista de comidas");
+        } else {
+            listaComidas.add(comida);
+        }
+    }
+
+    //metodo eliminar comida de la lista de comidas, validando que la comida exista en la lista de comidas
+    public void eliminarComida(Comida comida) {
+        if (listaComidas.contains(comida)) {
+            listaComidas.remove(comida);
+        } else {
+            System.out.println("La comida no existe en la lista de comidas");
         }
     }
 
@@ -113,7 +131,7 @@ public class RankGastronomic {
         return distancia;
     }
 
-    public double calcularDistanciaUsuarioRestaurante(Restaurante restorante, Usuario usuario) {
+    public double calcularDistanciaUsuarioRestaurante(Restorante restorante, Usuario usuario) {
 
         double radioTierra = 6371;
         double distanciaLat = Math.toRadians(restorante.getLatitud() - usuario.getLatitud());

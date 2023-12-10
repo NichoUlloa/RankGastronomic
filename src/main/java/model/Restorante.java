@@ -2,14 +2,14 @@ package model;
 
 import java.util.List;
 
-public class Restaurante extends Ubicacion {
+public class Restorante extends Ubicacion {
 
     private String nombreRestorante;
     private List<Comida> listaComidas;
     private String direccion;
 
     //constructor
-    public Restaurante(String nombreRestorante, List<Comida> listaComidas, String direccion, double latitud, double longitud) {
+    public Restorante(String nombreRestorante, List<Comida> listaComidas, String direccion, double latitud, double longitud, List<Reseña> reseñas) {
         super(latitud, longitud);
         this.nombreRestorante = nombreRestorante;
         this.listaComidas = listaComidas;
