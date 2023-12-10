@@ -7,13 +7,11 @@ public class RankGastronomic {
     private List<Restorante> listaRestaurantes;
     private List<Comida> listaComidas;
     private List<Usuario> listaUsuarios;
-    private List<Reseña> listaReseñas;
 
-    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
+    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios) {
         this.listaRestaurantes = listaRestaurantes;
         this.listaComidas = listaComidas;
         this.listaUsuarios = listaUsuarios;
-        this.listaReseñas = listaReseñas;
     }
 
     public List<Restorante> getListaRestaurantes() {
@@ -43,13 +41,6 @@ public class RankGastronomic {
     }
 
 
-    public List<Reseña> getListaReseñas() {
-        return listaReseñas;
-    }
-
-    public void setListaReseñas(List<Reseña> listaReseñas) {
-        this.listaReseñas = listaReseñas;
-    }
 
     //metodo buscar restorante por nombre, validando que exista en la lista de restaurantes
     public Restorante buscarRestorante(String nombreRestorante) {
@@ -107,12 +98,6 @@ public class RankGastronomic {
         }
     }
 
-    //metodo calcular distancia entre usuario y restorante con latitud y longitud
-    public double calcularDistancia(Ubicacion ubicacionUsuario, Ubicacion ubicacionRestorante) {
-        double distancia = Math.sqrt(Math.pow(ubicacionUsuario.getLatitud() - ubicacionRestorante.getLatitud(), 2) + Math.pow(ubicacionUsuario.getLongitud() - ubicacionRestorante.getLongitud(), 2));
-        return distancia;
-    }
-
     public double calcularDistanciaUsuarioRestaurante(Restorante restorante, Usuario usuario) {
 
         double radioTierra = 6371;
@@ -124,6 +109,20 @@ public class RankGastronomic {
                 * Math.cos(Math.toRadians(usuario.getLatitud())) * Math.cos(Math.toRadians(restorante.getLatitud()));
         double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
         return radioTierra * va2;
+    }
+    public void agregarComida(Comida comida){
+        if(listaComidas.contains(comida)){
+            System.out.println("Ya se encuentra registrada esta comida");
+        } else{
+            listaComidas.add(comida);
+        }
+    }
+    public void eliminarComida(Comida comida){
+        if(listaComidas.contains(comida)){
+            listaComidas.remove((comida));
+        }else {
+            System.out.println("No se encuentra esta comida en la aplicacion");
+        }
     }
 
 }

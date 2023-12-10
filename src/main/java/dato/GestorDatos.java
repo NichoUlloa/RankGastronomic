@@ -3,16 +3,16 @@ package dato;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import model.RankGastronomic;
-import model.Restorante;
-import model.Comida;
-import model.Usuario;
+
+import model.*;
 
 public class GestorDatos {
     private static final String datosRankGastronomic = "datosRankGastronomic.txt";
 
     public static RankGastronomic cargarDatosDesdeArchivo() {
-        RankGastronomic rankGastronomic = new RankGastronomic(null,null,null,null);
+        RankGastronomic rankGastronomic = new RankGastronomic(null,null,null);
+
+        cargarComidasEnRankGastronomic(rankGastronomic);
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosRankGastronomic))) {
             String linea;
@@ -55,8 +55,9 @@ public class GestorDatos {
         double longitudRestorante = Double.parseDouble(datos[3]);
         String direccionRestorante = datos[4];
         List<Comida> listaComidas = cargarComidasDelRestaurante(nombreRestorante);
+        List<Reseña> reseñas = cargarReseñasDelRestorante(nombreRestorante);
 
-        Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante);
+        Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante, reseñas);
         rankGastronomic.agregarRestorante(restorante);
     }
     private static List<Comida> cargarComidasDelRestaurante(String nombreRestorante) {
@@ -84,6 +85,48 @@ public class GestorDatos {
         }
         return listaComidas;
     }
+    private static List<Reseña> cargarReseñasDelRestorante(String nombreRestorante) {
+        List<Reseña> reseñas = new ArrayList<>();
+
+        String datosReseñas = "reseñas.txt";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(datosReseñas))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                String opinionReseña = datos[0];
+                int calificacionReseña = Integer.parseInt(datos[1]);
+
+                if (nombreRestorante != null){
+                    Reseña reseña = new Reseña(opinionReseña,calificacionReseña);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de datos de reseñas. No se cargarán reseñas para el restaurante.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo de datos de reseñas: " + e.getMessage());
+        }
+        return reseñas;
+    }
+    private static void cargarComidasEnRankGastronomic(RankGastronomic rankGastronomic) {
+        try (BufferedReader br = new BufferedReader(new FileReader("comidas.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                String nombreComida = datos[0];
+                double precioComida = Double.parseDouble(datos[1]);
+                String descripcionComida = datos[2];
+
+                Comida comida = new Comida(nombreComida, precioComida, descripcionComida);
+                rankGastronomic.agregarComida(comida);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de datos de comidas. No se cargarán comidas en RankGastronomic.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo de datos de comidas: " + e.getMessage());
+        }
+    }
+
 
     public static void guardarRegistrosEnArchivo(List<Object> registros) {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosRankGastronomic))) {

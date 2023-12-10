@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="Creacion de Gestor de Datos">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Restorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restorante.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1702169910362</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Creacion de Gestor de Datos">
+      <created>1702235519070</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1702235519070</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -102,7 +108,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="clase usuario" />
-    <option name="LAST_COMMIT_MESSAGE" value="clase usuario" />
+    <MESSAGE value="Creacion de Gestor de Datos" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creacion de Gestor de Datos" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
