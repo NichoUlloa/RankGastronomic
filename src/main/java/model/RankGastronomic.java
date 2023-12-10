@@ -4,23 +4,23 @@ import java.util.List;
 
 public class RankGastronomic {
 
-    private List<Restorante> listaRestaurantes;
+    private List<Restaurante> listaRestaurantes;
     private List<Comida> listaComidas;
     private List<Usuario> listaUsuarios;
     private List<Reseña> listaReseñas;
 
-    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
+    public RankGastronomic(List<Restaurante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
         this.listaRestaurantes = listaRestaurantes;
         this.listaComidas = listaComidas;
         this.listaUsuarios = listaUsuarios;
         this.listaReseñas = listaReseñas;
     }
 
-    public List<Restorante> getListaRestaurantes() {
+    public List<Restaurante> getListaRestaurantes() {
         return listaRestaurantes;
     }
 
-    public void setListaRestaurantes(List<Restorante> listaRestaurantes) {
+    public void setListaRestaurantes(List<Restaurante> listaRestaurantes) {
         this.listaRestaurantes = listaRestaurantes;
     }
 
@@ -52,8 +52,8 @@ public class RankGastronomic {
     }
 
     //metodo buscar restorante por nombre, validando que exista en la lista de restaurantes
-    public Restorante buscarRestorante(String nombreRestorante) {
-        for (Restorante restorante : listaRestaurantes) {
+    public Restaurante buscarRestorante(String nombreRestorante) {
+        for (Restaurante restorante : listaRestaurantes) {
             if (restorante.getNombreRestorante().equals(nombreRestorante)) {
                 return restorante;
             }
@@ -90,7 +90,7 @@ public class RankGastronomic {
     }
 
     //metodo agregar restorante a la lista de restaurantes, validando que el restorante no exista en la lista de restaurantes
-    public void agregarRestorante(Restorante restorante) {
+    public void agregarRestorante(Restaurante restorante) {
         if (listaRestaurantes.contains(restorante)) {
             System.out.println("El restorante ya existe en la lista de restaurantes");
         } else {
@@ -99,7 +99,7 @@ public class RankGastronomic {
     }
 
     //metodo eliminar restorante de la lista de restaurantes, validando que el restorante exista en la lista de restaurantes
-    public void eliminarRestorante(Restorante restorante) {
+    public void eliminarRestorante(Restaurante restorante) {
         if (listaRestaurantes.contains(restorante)) {
             listaRestaurantes.remove(restorante);
         } else {
@@ -113,7 +113,7 @@ public class RankGastronomic {
         return distancia;
     }
 
-    public double calcularDistanciaUsuarioRestaurante(Restorante restorante, Usuario usuario) {
+    public double calcularDistanciaUsuarioRestaurante(Restaurante restorante, Usuario usuario) {
 
         double radioTierra = 6371;
         double distanciaLat = Math.toRadians(restorante.getLatitud() - usuario.getLatitud());
