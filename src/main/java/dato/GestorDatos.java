@@ -66,7 +66,7 @@ public class GestorDatos {
     private static List<Comida> cargarComidasDelRestaurante(String nombreRestorante) {
         List<Comida> listaComidas = new ArrayList<>();
 
-        String datosComidas = "comidas.txt";
+        String datosComidas = "comidasRestorante.txt";
 
         try (BufferedReader br = new BufferedReader(new FileReader(datosComidas))) {
             String linea;
