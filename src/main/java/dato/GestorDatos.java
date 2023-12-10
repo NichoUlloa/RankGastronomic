@@ -13,52 +13,55 @@ public class GestorDatos {
         RankGastronomic rankGastronomic = new RankGastronomic(null,null,null);
 
         cargarComidasEnRankGastronomic(rankGastronomic);
-
-        try (BufferedReader br = new BufferedReader(new FileReader(datosRankGastronomic))) {
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                String[] datos = linea.split(",");
-                String tipoRegistro = datos[0];
-
-                if (tipoRegistro.equals("Usuario")) {
-                    cargarUsuarioDesdeDatos(rankGastronomic, datos);
-                } else if (tipoRegistro.equals("Restorante")) {
-                    cargarRestoranteDesdeDatos(rankGastronomic, datos);
-                }
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("No se encontró el archivo de datos. Se creará uno nuevo al agregar registros.");
-        } catch (IOException | NumberFormatException e) {
-            System.err.println("Error al leer el archivo de datos: " + e.getMessage());
-        }
-
+        cargarUsuarioDesdeDatos(rankGastronomic);
+        cargarRestoranteDesdeDatos(rankGastronomic);
         return rankGastronomic;
     }
 
-    private static void cargarUsuarioDesdeDatos(RankGastronomic rankGastronomic, String[] datos) {
-        String nombreUsuario = datos[1];
-        String apellidoUsuario = datos[2];
-        String correoUsuario = datos[3];
-        String contraseñaUsuario = datos[4];
-        String nickUsuario = datos[5];
-        String ciudad = datos[6];
-        double latitudUsuario = Double.parseDouble(datos[7]);
-        double longitudUsuario = Double.parseDouble(datos[8]);
+    private static void cargarUsuarioDesdeDatos(RankGastronomic rankGastronomic) {
+        try (BufferedReader br = new BufferedReader(new FileReader("datosUsuarios.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                String nombreUsuario = datos[1];
+                String apellidoUsuario = datos[2];
+                String correoUsuario = datos[3];
+                String contraseñaUsuario = datos[4];
+                String nickUsuario = datos[5];
+                String ciudad = datos[6];
+                double latitudUsuario = Double.parseDouble(datos[7]);
+                double longitudUsuario = Double.parseDouble(datos[8]);
 
-        Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, correoUsuario, contraseñaUsuario, nickUsuario, ciudad, latitudUsuario, longitudUsuario);
-        rankGastronomic.agregarUsuario(usuario);
-    }
+                Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, correoUsuario, contraseñaUsuario, nickUsuario, ciudad, latitudUsuario, longitudUsuario);
+                rankGastronomic.agregarUsuario(usuario);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de datos de usuarios . No se cargarán usuarios en RankGastronomic.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo de datos de usuarios: " + e.getMessage());
+        }
+        }
 
-    private static void cargarRestoranteDesdeDatos(RankGastronomic rankGastronomic, String[] datos) {
-        String nombreRestorante = datos[1];
-        double latitudRestorante = Double.parseDouble(datos[2]);
-        double longitudRestorante = Double.parseDouble(datos[3]);
-        String direccionRestorante = datos[4];
-        List<Comida> listaComidas = cargarComidasDelRestaurante(nombreRestorante);
-        List<Reseña> reseñas = cargarReseñasDelRestorante(nombreRestorante);
+    private static void cargarRestoranteDesdeDatos(RankGastronomic rankGastronomic){
+        try (BufferedReader br = new BufferedReader(new FileReader("datosRestorantes.txt"))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(",");
+                String nombreRestorante = datos[1];
+                double latitudRestorante = Double.parseDouble(datos[2]);
+                double longitudRestorante = Double.parseDouble(datos[3]);
+                String direccionRestorante = datos[4];
+                List<Comida> listaComidas = cargarComidasDelRestaurante(nombreRestorante);
+                List<Reseña> reseñas = cargarReseñasDelRestorante(nombreRestorante);
 
-        Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante, reseñas);
-        rankGastronomic.agregarRestorante(restorante);
+                Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante, reseñas);
+                rankGastronomic.agregarRestorante(restorante);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("No se encontró el archivo de datos de restorante . No se cargarán restorantes en RankGastronomic.");
+        } catch (IOException | NumberFormatException e) {
+            System.err.println("Error al leer el archivo de datos de restorante: " + e.getMessage());
+        }
     }
     private static List<Comida> cargarComidasDelRestaurante(String nombreRestorante) {
         List<Comida> listaComidas = new ArrayList<>();
@@ -135,6 +138,8 @@ public class GestorDatos {
                     guardarUsuarioEnArchivo((Usuario) registro, bw);
                 } else if (registro instanceof Restorante) {
                     guardarRestoranteEnArchivo((Restorante) registro, bw);
+                } else if (registro instanceof  Comida){
+                    guardarComidaEnArchivo((Comida) registro, bw);
                 }
             }
         } catch (IOException e) {
@@ -153,6 +158,12 @@ public class GestorDatos {
     private static void guardarRestoranteEnArchivo(Restorante restorante, BufferedWriter bw) throws IOException {
         String linea = "Restorante," + restorante.getNombreRestorante() + "," + restorante.getLatitud() + "," +
                 restorante.getLongitud() + "," + restorante.getDireccion();
+        bw.write(linea);
+        bw.newLine();
+    }
+    private static void guardarComidaEnArchivo(Comida comida, BufferedWriter bw) throws IOException {
+        String linea = "Comida," + comida.getNombreComida() + "," + comida.getPrecio() + "," +
+                comida.getDescripcion();
         bw.write(linea);
         bw.newLine();
     }
