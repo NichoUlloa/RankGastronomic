@@ -7,13 +7,11 @@ public class RankGastronomic {
     private List<Restorante> listaRestaurantes;
     private List<Comida> listaComidas;
     private List<Usuario> listaUsuarios;
-    private List<Reseña> listaReseñas;
 
-    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios, List<Reseña> listaReseñas) {
+    public RankGastronomic(List<Restorante> listaRestaurantes, List<Comida> listaComidas, List<Usuario> listaUsuarios) {
         this.listaRestaurantes = listaRestaurantes;
         this.listaComidas = listaComidas;
         this.listaUsuarios = listaUsuarios;
-        this.listaReseñas = listaReseñas;
     }
 
     public List<Restorante> getListaRestaurantes() {
@@ -43,13 +41,6 @@ public class RankGastronomic {
     }
 
 
-    public List<Reseña> getListaReseñas() {
-        return listaReseñas;
-    }
-
-    public void setListaReseñas(List<Reseña> listaReseñas) {
-        this.listaReseñas = listaReseñas;
-    }
 
     //metodo buscar restorante por nombre, validando que exista en la lista de restaurantes
     public Restorante buscarRestorante(String nombreRestorante) {
@@ -106,7 +97,6 @@ public class RankGastronomic {
             System.out.println("El restorante no existe en la lista de restaurantes");
         }
     }
-
     //metodo agregar comida a la lista de comidas, validando que la comida no exista en la lista de comidas
     public void agregarComida(Comida comida) {
         if (listaComidas.contains(comida)) {
@@ -130,20 +120,6 @@ public class RankGastronomic {
         double distancia = Math.sqrt(Math.pow(ubicacionUsuario.getLatitud() - ubicacionRestorante.getLatitud(), 2) + Math.pow(ubicacionUsuario.getLongitud() - ubicacionRestorante.getLongitud(), 2));
         return distancia;
     }
-
-    public double calcularDistanciaUsuarioRestaurante(Restorante restorante, Usuario usuario) {
-
-        double radioTierra = 6371;
-        double distanciaLat = Math.toRadians(restorante.getLatitud() - usuario.getLatitud());
-        double distanciaLng = Math.toRadians(restorante.getLongitud() - usuario.getLongitud());
-        double sindLat = Math.sin(distanciaLat / 2);
-        double sindLng = Math.sin(distanciaLng / 2);
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
-                * Math.cos(Math.toRadians(usuario.getLatitud())) * Math.cos(Math.toRadians(restorante.getLatitud()));
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-        return radioTierra * va2;
-    }
-
 
 
 }

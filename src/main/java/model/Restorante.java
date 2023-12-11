@@ -24,6 +24,8 @@ public class Restorante extends Ubicacion {
         this.direccion = direccion;
         this.listaComidas = convertirStringAListaComidas(listaComidasString);
         this.listaReseña = convertirStringAListaReseña(listaReseñaString);
+
+    //constructor
     }
 
     //getters y setters
@@ -56,6 +58,14 @@ public class Restorante extends Ubicacion {
     public void setListaReseña(List<Reseña> listaReseña) {
         this.listaReseña = listaReseña;
     }
+
+    public List<Reseña> getReseñas() {
+        return reseñas;
+    };
+
+    public void setReseñas(List<Reseña> reseñas) {
+        this.reseñas = reseñas;
+    };
 
     //metodo agregar comida a la lista de comidas del restorante, validando que la comida exista en la lista de comidas
     public void agregarComida(Comida comida) {
@@ -110,5 +120,6 @@ public class Restorante extends Ubicacion {
             }
         }
         return listaComidas;
+
     }
 }

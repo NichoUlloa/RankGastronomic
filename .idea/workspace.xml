@@ -4,6 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+
     <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="correccion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
