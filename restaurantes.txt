@@ -1,0 +1,35 @@
+La Picada
+Av. 18 de Julio 1234
+5.0
+9.0
+Reseña{opinion=Muy buena comida, calificacion=5}
+
+Comida{nombreComida=Milanesa, precio=250.0, descripcion=Milanesa con papas fritas}
+La Picada
+Av. 18 de Julio 1234
+5.0
+9.0
+Reseña{opinion=Muy buena comida, calificacion=5}
+
+Comida{nombreComida=Milanesa, precio=250.0, descripcion=Milanesa con papas fritas}
+La Picada
+Av. 18 de Julio 1234
+5.0
+9.0
+Reseña{opinion=Muy buena comida, calificacion=5}
+
+Comida{nombreComida=Milanesa, precio=250.0, descripcion=Milanesa con papas fritas}
+La Picada
+Av. 18 de Julio 1234
+5.0
+9.0
+Reseña{opinion=Muy buena comida, calificacion=5}
+
+Comida{nombreComida=Milanesa, precio=250.0, descripcion=Milanesa con papas fritas}
+La Picada
+Av. 18 de Julio 1234
+5.0
+9.0
+Reseña{opinion=Muy buena comida, calificacion=5}
+
+Comida{nombreComida=Milanesa, precio=250.0, descripcion=Milanesa con papas fritas}

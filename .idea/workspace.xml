@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="correccion">
+    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="correcciones e intento de solucionar por completo">
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-12-2023_19_25_[Changes]/shelved.patch" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10-12-2023_19_25__Changes_.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/comidas.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/restaurantes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/usuarios.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRestaurantes.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRestaurantes.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Principal.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Restorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restorante.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,7 @@
       <workItem from="1702169866316" duration="801000" />
       <workItem from="1702172942116" duration="618000" />
       <workItem from="1702252752634" duration="33000" />
-      <workItem from="1702252820424" duration="8371000" />
+      <workItem from="1702252820424" duration="10104000" />
     </task>
     <task id="LOCAL-00001" summary="clase usuario">
       <created>1702169910362</created>
@@ -136,18 +135,46 @@
       <option name="project" value="LOCAL" />
       <updated>1702254589015</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="correcciones e intento de solucionar por completo">
+      <option name="closed" value="true" />
+      <created>1702261423415</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1702261423415</updated>
+    </task>
+    <task id="LOCAL-00006" summary="correcciones e intento de solucionar por completo">
+      <option name="closed" value="true" />
+      <created>1702262244960</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1702262244960</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="clase usuario" />
     <MESSAGE value="Creacion de Gestor de Datos" />
     <MESSAGE value="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu" />
     <MESSAGE value="correccion" />
-    <option name="LAST_COMMIT_MESSAGE" value="correccion" />
+    <MESSAGE value="correcciones e intento de solucionar por completo" />
+    <option name="LAST_COMMIT_MESSAGE" value="correcciones e intento de solucionar por completo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,0 +1,21 @@
+Hamburguesa
+5000.0
+Hamburguesa con queso, lechuga, tomate y cebollaPizza
+Pizza de peperoni
+10000.0
+Pizza de peperoniPizza
+Milanesa
+250.0
+Milanesa con papas fritas
+Milanesa
+250.0
+Milanesa con papas fritas
+Milanesa
+250.0
+Milanesa con papas fritas
+Milanesa
+250.0
+Milanesa con papas fritas
+Milanesa
+250.0
+Milanesa con papas fritas

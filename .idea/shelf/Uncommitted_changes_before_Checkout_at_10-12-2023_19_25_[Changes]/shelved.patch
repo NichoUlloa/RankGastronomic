@@ -1,0 +1,266 @@
+Index: src/main/java/dato/GestorDatos.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package dato;\r\n\r\nimport java.io.*;\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\nimport model.*;\r\n\r\npublic class GestorDatos {\r\n    private static final String datosRankGastronomic = \"datosRankGastronomic.txt\";\r\n\r\n    public static RankGastronomic cargarDatosDesdeArchivo() {\r\n        RankGastronomic rankGastronomic = new RankGastronomic(null,null,null);\r\n\r\n        cargarComidasEnRankGastronomic(rankGastronomic);\r\n        cargarUsuarioDesdeDatos(rankGastronomic);\r\n        cargarRestoranteDesdeDatos(rankGastronomic);\r\n        return rankGastronomic;\r\n    }\r\n\r\n    private static void cargarUsuarioDesdeDatos(RankGastronomic rankGastronomic) {\r\n        try (BufferedReader br = new BufferedReader(new FileReader(\"datosUsuarios.txt\"))) {\r\n            String linea;\r\n            while ((linea = br.readLine()) != null) {\r\n                String[] datos = linea.split(\",\");\r\n                String nombreUsuario = datos[1];\r\n                String apellidoUsuario = datos[2];\r\n                String correoUsuario = datos[3];\r\n                String contraseñaUsuario = datos[4];\r\n                String nickUsuario = datos[5];\r\n                String ciudad = datos[6];\r\n                double latitudUsuario = Double.parseDouble(datos[7]);\r\n                double longitudUsuario = Double.parseDouble(datos[8]);\r\n\r\n                Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, correoUsuario, contraseñaUsuario, nickUsuario, ciudad, latitudUsuario, longitudUsuario);\r\n                rankGastronomic.agregarUsuario(usuario);\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"No se encontró el archivo de datos de usuarios . No se cargarán usuarios en RankGastronomic.\");\r\n        } catch (IOException | NumberFormatException e) {\r\n            System.err.println(\"Error al leer el archivo de datos de usuarios: \" + e.getMessage());\r\n        }\r\n        }\r\n\r\n    private static void cargarRestoranteDesdeDatos(RankGastronomic rankGastronomic){\r\n        try (BufferedReader br = new BufferedReader(new FileReader(\"datosRestorantes.txt\"))) {\r\n            String linea;\r\n            while ((linea = br.readLine()) != null) {\r\n                String[] datos = linea.split(\",\");\r\n                String nombreRestorante = datos[1];\r\n                double latitudRestorante = Double.parseDouble(datos[2]);\r\n                double longitudRestorante = Double.parseDouble(datos[3]);\r\n                String direccionRestorante = datos[4];\r\n                List<Comida> listaComidas = cargarComidasDelRestaurante(nombreRestorante);\r\n                List<Reseña> reseñas = cargarReseñasDelRestorante(nombreRestorante);\r\n\r\n                Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante, reseñas);\r\n                rankGastronomic.agregarRestorante(restorante);\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"No se encontró el archivo de datos de restorante . No se cargarán restorantes en RankGastronomic.\");\r\n        } catch (IOException | NumberFormatException e) {\r\n            System.err.println(\"Error al leer el archivo de datos de restorante: \" + e.getMessage());\r\n        }\r\n    }\r\n    private static List<Comida> cargarComidasDelRestaurante(String nombreRestorante) {\r\n        List<Comida> listaComidas = new ArrayList<>();\r\n\r\n        String datosComidas = \"comidasRestorante.txt\";\r\n\r\n        try (BufferedReader br = new BufferedReader(new FileReader(datosComidas))) {\r\n            String linea;\r\n            while ((linea = br.readLine()) != null) {\r\n                String[] datos = linea.split(\",\");\r\n                String nombreComida = datos[0];\r\n                double precioComida = Double.parseDouble(datos[1]);\r\n                String descripcionComida = datos[2];\r\n\r\n                if (nombreRestorante != null){\r\n                    Comida comida = new Comida(nombreComida, precioComida, descripcionComida);\r\n                    listaComidas.add(comida);\r\n                }\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"No se encontró el archivo de datos de comidas. No se cargarán comidas para el restaurante.\");\r\n        } catch (IOException | NumberFormatException e) {\r\n            System.err.println(\"Error al leer el archivo de datos de comidas: \" + e.getMessage());\r\n        }\r\n        return listaComidas;\r\n    }\r\n    private static List<Reseña> cargarReseñasDelRestorante(String nombreRestorante) {\r\n        List<Reseña> reseñas = new ArrayList<>();\r\n\r\n        String datosReseñas = \"reseñas.txt\";\r\n\r\n        try (BufferedReader br = new BufferedReader(new FileReader(datosReseñas))) {\r\n            String linea;\r\n            while ((linea = br.readLine()) != null) {\r\n                String[] datos = linea.split(\",\");\r\n                String opinionReseña = datos[0];\r\n                int calificacionReseña = Integer.parseInt(datos[1]);\r\n\r\n                if (nombreRestorante != null){\r\n                    Reseña reseña = new Reseña(opinionReseña,calificacionReseña);\r\n                }\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"No se encontró el archivo de datos de reseñas. No se cargarán reseñas para el restaurante.\");\r\n        } catch (IOException | NumberFormatException e) {\r\n            System.err.println(\"Error al leer el archivo de datos de reseñas: \" + e.getMessage());\r\n        }\r\n        return reseñas;\r\n    }\r\n    private static void cargarComidasEnRankGastronomic(RankGastronomic rankGastronomic) {\r\n        try (BufferedReader br = new BufferedReader(new FileReader(\"comidas.txt\"))) {\r\n            String linea;\r\n            while ((linea = br.readLine()) != null) {\r\n                String[] datos = linea.split(\",\");\r\n                String nombreComida = datos[0];\r\n                double precioComida = Double.parseDouble(datos[1]);\r\n                String descripcionComida = datos[2];\r\n\r\n                Comida comida = new Comida(nombreComida, precioComida, descripcionComida);\r\n                rankGastronomic.agregarComida(comida);\r\n            }\r\n        } catch (FileNotFoundException e) {\r\n            System.out.println(\"No se encontró el archivo de datos de comidas. No se cargarán comidas en RankGastronomic.\");\r\n        } catch (IOException | NumberFormatException e) {\r\n            System.err.println(\"Error al leer el archivo de datos de comidas: \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n\r\n    public static void guardarRegistrosEnArchivo(List<Object> registros) {\r\n        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosRankGastronomic))) {\r\n            for (Object registro : registros) {\r\n                if (registro instanceof Usuario) {\r\n                    guardarUsuarioEnArchivo((Usuario) registro, bw);\r\n                } else if (registro instanceof Restorante) {\r\n                    guardarRestoranteEnArchivo((Restorante) registro, bw);\r\n                } else if (registro instanceof  Comida){\r\n                    guardarComidaEnArchivo((Comida) registro, bw);\r\n                }\r\n            }\r\n        } catch (IOException e) {\r\n            System.err.println(\"Error al escribir en el archivo de datos: \" + e.getMessage());\r\n        }\r\n    }\r\n\r\n    private static void guardarUsuarioEnArchivo(Usuario usuario, BufferedWriter bw) throws IOException {\r\n        String linea = \"Usuario,\" + usuario.getNombreUsuario() + \",\" + usuario.getApellidoUsuario() + \",\" +\r\n                usuario.getCorreoUsuario() + \",\" + usuario.getContraseñaUsuario() + \",\" + usuario.getNickUsuario() + \",\" +\r\n                usuario.getCiudad() + \",\" + usuario.getLatitud() + \",\" + usuario.getLongitud();\r\n        bw.write(linea);\r\n        bw.newLine();\r\n    }\r\n\r\n    private static void guardarRestoranteEnArchivo(Restorante restorante, BufferedWriter bw) throws IOException {\r\n        String linea = \"Restorante,\" + restorante.getNombreRestorante() + \",\" + restorante.getLatitud() + \",\" +\r\n                restorante.getLongitud() + \",\" + restorante.getDireccion();\r\n        bw.write(linea);\r\n        bw.newLine();\r\n    }\r\n    private static void guardarComidaEnArchivo(Comida comida, BufferedWriter bw) throws IOException {\r\n        String linea = \"Comida,\" + comida.getNombreComida() + \",\" + comida.getPrecio() + \",\" +\r\n                comida.getDescripcion();\r\n        bw.write(linea);\r\n        bw.newLine();\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/dato/GestorDatos.java b/src/main/java/dato/GestorDatos.java
+--- a/src/main/java/dato/GestorDatos.java	(revision eafb028628ff3cb1ba865766b96cc1352ebe4f46)
++++ b/src/main/java/dato/GestorDatos.java	(date 1702247127727)
+@@ -6,165 +6,36 @@
+ 
+ import model.*;
+ 
+-public class GestorDatos {
+-    private static final String datosRankGastronomic = "datosRankGastronomic.txt";
+-
+-    public static RankGastronomic cargarDatosDesdeArchivo() {
+-        RankGastronomic rankGastronomic = new RankGastronomic(null,null,null);
++class GestorDatos {
++    private static final String NOMBRE_ARCHIVO = "usuarios.txt";
+ 
+-        cargarComidasEnRankGastronomic(rankGastronomic);
+-        cargarUsuarioDesdeDatos(rankGastronomic);
+-        cargarRestoranteDesdeDatos(rankGastronomic);
+-        return rankGastronomic;
+-    }
+-
+-    private static void cargarUsuarioDesdeDatos(RankGastronomic rankGastronomic) {
+-        try (BufferedReader br = new BufferedReader(new FileReader("datosUsuarios.txt"))) {
+-            String linea;
+-            while ((linea = br.readLine()) != null) {
+-                String[] datos = linea.split(",");
+-                String nombreUsuario = datos[1];
+-                String apellidoUsuario = datos[2];
+-                String correoUsuario = datos[3];
+-                String contraseñaUsuario = datos[4];
+-                String nickUsuario = datos[5];
+-                String ciudad = datos[6];
+-                double latitudUsuario = Double.parseDouble(datos[7]);
+-                double longitudUsuario = Double.parseDouble(datos[8]);
+-
+-                Usuario usuario = new Usuario(nombreUsuario, apellidoUsuario, correoUsuario, contraseñaUsuario, nickUsuario, ciudad, latitudUsuario, longitudUsuario);
+-                rankGastronomic.agregarUsuario(usuario);
+-            }
+-        } catch (FileNotFoundException e) {
+-            System.out.println("No se encontró el archivo de datos de usuarios . No se cargarán usuarios en RankGastronomic.");
+-        } catch (IOException | NumberFormatException e) {
+-            System.err.println("Error al leer el archivo de datos de usuarios: " + e.getMessage());
++    public void guardarUsuario(Usuario usuario) {
++        try (BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO, true))) {
++            writer.write(usuario.getNombreUsuario() + "\n");
++        } catch (IOException e) {
++            e.printStackTrace();
+         }
+-        }
++    }
+ 
+-    private static void cargarRestoranteDesdeDatos(RankGastronomic rankGastronomic){
+-        try (BufferedReader br = new BufferedReader(new FileReader("datosRestorantes.txt"))) {
++    public List<Usuario> leerUsuarios() {
++        List<Usuario> usuarios = new ArrayList<>();
++        try (BufferedReader reader = new BufferedReader(new FileReader(NOMBRE_ARCHIVO))) {
+             String linea;
+-            while ((linea = br.readLine()) != null) {
+-                String[] datos = linea.split(",");
+-                String nombreRestorante = datos[1];
+-                double latitudRestorante = Double.parseDouble(datos[2]);
+-                double longitudRestorante = Double.parseDouble(datos[3]);
+-                String direccionRestorante = datos[4];
+-                List<Comida> listaComidas = cargarComidasDelRestaurante(nombreRestorante);
+-                List<Reseña> reseñas = cargarReseñasDelRestorante(nombreRestorante);
+-
+-                Restorante restorante = new Restorante(nombreRestorante, listaComidas, direccionRestorante, latitudRestorante, longitudRestorante, reseñas);
+-                rankGastronomic.agregarRestorante(restorante);
+-            }
+-        } catch (FileNotFoundException e) {
+-            System.out.println("No se encontró el archivo de datos de restorante . No se cargarán restorantes en RankGastronomic.");
+-        } catch (IOException | NumberFormatException e) {
+-            System.err.println("Error al leer el archivo de datos de restorante: " + e.getMessage());
+-        }
+-    }
+-    private static List<Comida> cargarComidasDelRestaurante(String nombreRestorante) {
+-        List<Comida> listaComidas = new ArrayList<>();
+-
+-        String datosComidas = "comidasRestorante.txt";
+-
+-        try (BufferedReader br = new BufferedReader(new FileReader(datosComidas))) {
+-            String linea;
+-            while ((linea = br.readLine()) != null) {
+-                String[] datos = linea.split(",");
+-                String nombreComida = datos[0];
+-                double precioComida = Double.parseDouble(datos[1]);
+-                String descripcionComida = datos[2];
+-
+-                if (nombreRestorante != null){
+-                    Comida comida = new Comida(nombreComida, precioComida, descripcionComida);
+-                    listaComidas.add(comida);
+-                }
+-            }
+-        } catch (FileNotFoundException e) {
+-            System.out.println("No se encontró el archivo de datos de comidas. No se cargarán comidas para el restaurante.");
+-        } catch (IOException | NumberFormatException e) {
+-            System.err.println("Error al leer el archivo de datos de comidas: " + e.getMessage());
+-        }
+-        return listaComidas;
+-    }
+-    private static List<Reseña> cargarReseñasDelRestorante(String nombreRestorante) {
+-        List<Reseña> reseñas = new ArrayList<>();
+-
+-        String datosReseñas = "reseñas.txt";
+-
+-        try (BufferedReader br = new BufferedReader(new FileReader(datosReseñas))) {
+-            String linea;
+-            while ((linea = br.readLine()) != null) {
+-                String[] datos = linea.split(",");
+-                String opinionReseña = datos[0];
+-                int calificacionReseña = Integer.parseInt(datos[1]);
+-
+-                if (nombreRestorante != null){
+-                    Reseña reseña = new Reseña(opinionReseña,calificacionReseña);
+-                }
+-            }
+-        } catch (FileNotFoundException e) {
+-            System.out.println("No se encontró el archivo de datos de reseñas. No se cargarán reseñas para el restaurante.");
+-        } catch (IOException | NumberFormatException e) {
+-            System.err.println("Error al leer el archivo de datos de reseñas: " + e.getMessage());
+-        }
+-        return reseñas;
+-    }
+-    private static void cargarComidasEnRankGastronomic(RankGastronomic rankGastronomic) {
+-        try (BufferedReader br = new BufferedReader(new FileReader("comidas.txt"))) {
+-            String linea;
+-            while ((linea = br.readLine()) != null) {
+-                String[] datos = linea.split(",");
+-                String nombreComida = datos[0];
+-                double precioComida = Double.parseDouble(datos[1]);
+-                String descripcionComida = datos[2];
+-
+-                Comida comida = new Comida(nombreComida, precioComida, descripcionComida);
+-                rankGastronomic.agregarComida(comida);
+-            }
+-        } catch (FileNotFoundException e) {
+-            System.out.println("No se encontró el archivo de datos de comidas. No se cargarán comidas en RankGastronomic.");
+-        } catch (IOException | NumberFormatException e) {
+-            System.err.println("Error al leer el archivo de datos de comidas: " + e.getMessage());
+-        }
+-    }
+-
+-
+-    public static void guardarRegistrosEnArchivo(List<Object> registros) {
+-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(datosRankGastronomic))) {
+-            for (Object registro : registros) {
+-                if (registro instanceof Usuario) {
+-                    guardarUsuarioEnArchivo((Usuario) registro, bw);
+-                } else if (registro instanceof Restorante) {
+-                    guardarRestoranteEnArchivo((Restorante) registro, bw);
+-                } else if (registro instanceof  Comida){
+-                    guardarComidaEnArchivo((Comida) registro, bw);
+-                }
++            while ((linea = reader.readLine()) != null) {
++                usuarios.add(new Usuario(linea, null, null, null, null, null, 0, 0));
+             }
+         } catch (IOException e) {
+-            System.err.println("Error al escribir en el archivo de datos: " + e.getMessage());
++            e.printStackTrace();
+         }
++        return usuarios;
+     }
+-
+-    private static void guardarUsuarioEnArchivo(Usuario usuario, BufferedWriter bw) throws IOException {
+-        String linea = "Usuario," + usuario.getNombreUsuario() + "," + usuario.getApellidoUsuario() + "," +
+-                usuario.getCorreoUsuario() + "," + usuario.getContraseñaUsuario() + "," + usuario.getNickUsuario() + "," +
+-                usuario.getCiudad() + "," + usuario.getLatitud() + "," + usuario.getLongitud();
+-        bw.write(linea);
+-        bw.newLine();
+-    }
+-
+-    private static void guardarRestoranteEnArchivo(Restorante restorante, BufferedWriter bw) throws IOException {
+-        String linea = "Restorante," + restorante.getNombreRestorante() + "," + restorante.getLatitud() + "," +
+-                restorante.getLongitud() + "," + restorante.getDireccion();
+-        bw.write(linea);
+-        bw.newLine();
+-    }
+-    private static void guardarComidaEnArchivo(Comida comida, BufferedWriter bw) throws IOException {
+-        String linea = "Comida," + comida.getNombreComida() + "," + comida.getPrecio() + "," +
+-                comida.getDescripcion();
+-        bw.write(linea);
+-        bw.newLine();
++    public boolean verificarUsuario(String nombre) {
++        List<Usuario> usuarios = leerUsuarios();
++        for (Usuario usuario : usuarios) {
++            if (usuario.getNombreUsuario().equals(nombre)) {
++                return true; // El usuario existe
++            }
++        }
++        return false;
+     }
+-}
++}
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"b6a41d4c-3f1c-415b-aca3-5ea8bc6835af\" name=\"Changes\" comment=\"arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/dato/GestorDatos.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/dato/GestorDatos.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"useMavenConfig\" value=\"true\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProblemsViewState\">\r\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2ZKRQEXy58vhfoyVVWUiMCsECzg\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">{\r\n  &quot;keyToString&quot;: {\r\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\r\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\r\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\r\n    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,\r\n    &quot;git-widget-placeholder&quot;: &quot;master&quot;,\r\n    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,\r\n    &quot;last_opened_file_path&quot;: &quot;C:/Users/Sepuls Pc's/IdeaProjects/RankGastronomicDef&quot;,\r\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\r\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\r\n    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/Nicho/Proyectos Intellij/RankGastronomic1/src/main/java/org/example/Main.java&quot;,\r\n    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,\r\n    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,\r\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\r\n  }\r\n}</component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"b6a41d4c-3f1c-415b-aca3-5ea8bc6835af\" name=\"Changes\" comment=\"\" />\r\n      <created>1702168767454</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1702168767454</updated>\r\n      <workItem from=\"1702168768679\" duration=\"312000\" />\r\n      <workItem from=\"1702169681013\" duration=\"57000\" />\r\n      <workItem from=\"1702169748173\" duration=\"70000\" />\r\n      <workItem from=\"1702169866316\" duration=\"801000\" />\r\n      <workItem from=\"1702172942116\" duration=\"618000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"clase usuario\">\r\n      <created>1702169910362</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1702169910362</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Creacion de Gestor de Datos\">\r\n      <created>1702235519070</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1702235519070</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu\">\r\n      <created>1702237166667</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1702237166667</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"clase usuario\" />\r\n    <MESSAGE value=\"Creacion de Gestor de Datos\" />\r\n    <MESSAGE value=\"arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu\" />\r\n  </component>\r\n  <component name=\"XDebuggerManager\">\r\n    <breakpoint-manager>\r\n      <breakpoints>\r\n        <line-breakpoint enabled=\"true\" type=\"java-line\">\r\n          <url>file://$PROJECT_DIR$/src/main/java/org/example/Main.java</url>\r\n          <line>15</line>\r\n          <option name=\"timeStamp\" value=\"1\" />\r\n        </line-breakpoint>\r\n      </breakpoints>\r\n    </breakpoint-manager>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision eafb028628ff3cb1ba865766b96cc1352ebe4f46)
++++ b/.idea/workspace.xml	(date 1702246574434)
+@@ -5,6 +5,7 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu">
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
+     </list>
+@@ -30,13 +31,6 @@
+   </component>
+   <component name="MarkdownSettingsMigration">
+     <option name="stateVersion" value="1" />
+-  </component>
+-  <component name="MavenImportPreferences">
+-    <option name="generalSettings">
+-      <MavenGeneralSettings>
+-        <option name="useMavenConfig" value="true" />
+-      </MavenGeneralSettings>
+-    </option>
+   </component>
+   <component name="ProblemsViewState">
+     <option name="selectedTabId" value="CurrentFile" />
+@@ -44,6 +38,9 @@
+   <component name="ProjectCodeStyleSettingsMigration">
+     <option name="version" value="2" />
+   </component>
++  <component name="ProjectColorInfo"><![CDATA[{
++  "associatedIndex": 2
++}]]></component>
+   <component name="ProjectId" id="2ZKRQEXy58vhfoyVVWUiMCsECzg" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+@@ -83,6 +80,7 @@
+       <workItem from="1702169748173" duration="70000" />
+       <workItem from="1702169866316" duration="801000" />
+       <workItem from="1702172942116" duration="618000" />
++      <workItem from="1702245420097" duration="1150000" />
+     </task>
+     <task id="LOCAL-00001" summary="clase usuario">
+       <created>1702169910362</created>
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_19\" project-jdk-name=\"21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	(revision eafb028628ff3cb1ba865766b96cc1352ebe4f46)
++++ b/.idea/misc.xml	(date 1702245418697)
+@@ -1,4 +1,3 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">
