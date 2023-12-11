@@ -4,15 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="correccion">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Menu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Menu.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/VentanaLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRegistrar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/VentanaRegistrar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRestaurantes.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRestaurantes.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Principal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/model/Restorante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restorante.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,7 +105,7 @@
       <workItem from="1702169866316" duration="801000" />
       <workItem from="1702172942116" duration="618000" />
       <workItem from="1702252752634" duration="33000" />
-      <workItem from="1702252820424" duration="1018000" />
+      <workItem from="1702252820424" duration="8371000" />
     </task>
     <task id="LOCAL-00001" summary="clase usuario">
       <created>1702169910362</created>
@@ -129,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1702237166667</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="correccion">
+      <option name="closed" value="true" />
+      <created>1702254589015</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1702254589015</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +146,8 @@
     <MESSAGE value="clase usuario" />
     <MESSAGE value="Creacion de Gestor de Datos" />
     <MESSAGE value="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu" />
-    <option name="LAST_COMMIT_MESSAGE" value="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu" />
+    <MESSAGE value="correccion" />
+    <option name="LAST_COMMIT_MESSAGE" value="correccion" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

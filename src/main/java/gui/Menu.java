@@ -16,7 +16,7 @@ public class Menu extends JFrame {
 
     public Menu() {
         setContentPane(MenuPanel);
-        setTitle("Login");
+        setTitle("Menu");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
@@ -41,5 +41,14 @@ public class Menu extends JFrame {
                 }
             }
         });
+        aceptarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String comida = listaComidas.getSelectedItem().toString();
+                JOptionPane.showMessageDialog(null, "La comida seleccionada es: " + comida+"\n" +" nuevas funciones proximamente");
+                dispose();
+            }
+        });
+        }
     }
-}
+
