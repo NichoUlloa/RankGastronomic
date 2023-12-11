@@ -4,14 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="creacion de guis">
-      <change afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/main/Principal.java" afterDir="false" />
+    <list default="true" id="b6a41d4c-3f1c-415b-aca3-5ea8bc6835af" name="Changes" comment="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dato/GestorDatos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Menu.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Menu.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/VentanaLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaTabla.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/VentanaTabla.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/RankGastronomic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/model/Restaurante.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/model/Restorante.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/gui/VentanaRegistrar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/gui/VentanaRegistrar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/main/Principal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/main/Principal.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="nico" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -43,12 +44,10 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 5
+  &quot;associatedIndex&quot;: 3
 }</component>
   <component name="ProjectId" id="2ZKRQEXy58vhfoyVVWUiMCsECzg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,8 +57,6 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.STATE&quot;: &quot;right&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.STATE&quot;: &quot;left&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;nicoUlloa&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -75,7 +72,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager" selected="Application.Principal">
+  <component name="RunManager">
     <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="main.Principal" />
       <module name="RankGastronomic1" />
@@ -89,36 +86,9 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VentanaPrincipal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="gui.VentanaPrincipal" />
-      <module name="RankGastronomic1" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="gui.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="RankGastronomic" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="RankGastronomic" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Principal" />
-        <item itemvalue="Application.VentanaPrincipal" />
       </list>
     </recent_temporary>
   </component>
@@ -135,11 +105,8 @@
       <workItem from="1702169748173" duration="70000" />
       <workItem from="1702169866316" duration="801000" />
       <workItem from="1702172942116" duration="618000" />
-      <workItem from="1702173939153" duration="113000" />
-      <workItem from="1702174054250" duration="1682000" />
-      <workItem from="1702176031792" duration="776000" />
-      <workItem from="1702228402323" duration="6410000" />
-      <workItem from="1702237661055" duration="7418000" />
+      <workItem from="1702252752634" duration="33000" />
+      <workItem from="1702252820424" duration="1018000" />
     </task>
     <task id="LOCAL-00001" summary="clase usuario">
       <created>1702169910362</created>
@@ -148,21 +115,19 @@
       <option name="project" value="LOCAL" />
       <updated>1702169910362</updated>
     </task>
-    <task id="LOCAL-00002" summary="Se crea package Gui con una ventana principal">
-      <option name="closed" value="true" />
-      <created>1702174509378</created>
+    <task id="LOCAL-00002" summary="Creacion de Gestor de Datos">
+      <created>1702235519070</created>
       <option name="number" value="00002" />
       <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
-      <updated>1702174509378</updated>
+      <updated>1702235519070</updated>
     </task>
-    <task id="LOCAL-00003" summary="creacion de guis">
-      <option name="closed" value="true" />
-      <created>1702238080860</created>
+    <task id="LOCAL-00003" summary="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu">
+      <created>1702237166667</created>
       <option name="number" value="00003" />
       <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
-      <updated>1702238080860</updated>
+      <updated>1702237166667</updated>
     </task>
     <option name="localTasksCounter" value="4" />
     <servers />
@@ -172,9 +137,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="clase usuario" />
-    <MESSAGE value="Se crea package Gui con una ventana principal" />
-    <MESSAGE value="creacion de guis" />
-    <option name="LAST_COMMIT_MESSAGE" value="creacion de guis" />
+    <MESSAGE value="Creacion de Gestor de Datos" />
+    <MESSAGE value="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="arregle gestor de datos y cambie los constructores de restorante y rankgastronomic para tener reseñas en restorante y rank gastronomic agregue comidas para mostrar en un menu" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

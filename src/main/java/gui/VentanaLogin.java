@@ -1,10 +1,12 @@
 package gui;
 
+import dato.GestorDatos;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import static dato.GestorDatos.leerArchivoUsuarios;
+import static dato.GestorDatos.*;
 
 public class VentanaLogin extends JFrame {
     private JPanel loginPanel;
@@ -24,24 +26,25 @@ public class VentanaLogin extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String usuario = campoUsuario.getText();
                 String contraseña = campoContraseña.getText();
-                if (!usuario.isEmpty() && !contraseña.isEmpty()) {
-                    if (!leerArchivoUsuarios(usuario, contraseña)) {
-                        JOptionPane.showMessageDialog(null, "Bienvenido " + usuario);
-                        dispose();
-                        Menu menu = new Menu();
-
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos o no existe el usuario");
-                    }
+                if (GestorDatos.verificarUsuario(usuario, contraseña)) {
+                    JOptionPane.showMessageDialog(null, "Bienvenido " + usuario);
+                    Menu menu = new Menu();
+                    dispose();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Ingrese usuario y contraseña");
+                    JOptionPane.showMessageDialog(null, "Usuario no encontrado");
                 }
-
             }
 
             public static void main(String[] args) {
                 VentanaLogin ventanaLogin = new VentanaLogin();
 
+            }
+        });
+        registrateAquiButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                VentanaRegistrar ventanaRegistro = new VentanaRegistrar();
+                dispose();
             }
         });
     }
