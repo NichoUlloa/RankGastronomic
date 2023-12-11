@@ -10,6 +10,7 @@ import static dato.GestorDatos.*;
 
 
 public class Principal {
+
     public static void main(String[] args) {
         Usuario usuario1 = new Usuario("prueba", "Perez", "afa", "123456","prueba","temuco",5,8);
         Reseña reseña1 = new Reseña("Muy buena comida", 5);
